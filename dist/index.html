@@ -11,7 +11,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style>
         body {
-            display: flex;
+            display: grid;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -40,9 +40,14 @@
             width: 150px; /* Adjust size as needed */
             height: 150px; /* Adjust size as needed */
         }
+        
+        p {
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
+    <h1>Click the same buttom</h1>
     <div class="grid-container">
         <!-- Example of including an SVG directly -->
         <!-- <img src="../svgs/airplane.svg" alt="Airplane SVG"> -->
@@ -64,6 +69,10 @@
         <button class="grid-item" id="fiveteen"></button>
         <button class="grid-item" id="sixteen"></button>
         <button id="start_button">Start</button>
-    </div>    
+        <p id="guess" style="color:  green;">Count of correct guesses: </p>
+        <br>
+        <p id="miss" style="color: red;">Count of mistakes: </p>
+    </div>   
+    <p id="time">Timer:</p> 
 </body>
 </html>
