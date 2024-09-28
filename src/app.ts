@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", ()=> {
+document.addEventListener("DOMContentLoaded", () => {
     const start_buttonEl: HTMLButtonElement = document.getElementById('start_button')! as HTMLButtonElement;
     const allButtonElUnFiltered: HTMLButtonElement[] = Array.from(document.querySelectorAll('button')) as HTMLButtonElement[];
     const allButtonEl: HTMLButtonElement[] = Array.from(allButtonElUnFiltered).filter(button => button.textContent?.trim() !== "Start");
@@ -14,8 +14,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
     let gemLogic: GemLogic;
 
     start_buttonEl.addEventListener('click', () => {
-        setTimeout(() => {doTimer(timeEl)}, 8000);
-
+        setTimeout(() => {doTimer(timeEl)}, 8_000);
         start_buttonEl.disabled = true;
         console.log('Clicked Stat');
 
@@ -32,12 +31,16 @@ document.addEventListener("DOMContentLoaded", ()=> {
                 gemLogic.makeTheButtomStyelOriginal(buttom);
                 if(finalCount === 16)
                 {
-                    stopTimer();
                     start_buttonEl.disabled = false;  
                     start_buttonEl.textContent = 'Restart';
+                    stopTimer();
                     start_buttonEl.addEventListener('click', () => {
                         location.reload();
                     });
+                }
+                else
+                {
+                    console.log(finalCount + ' finalCount');
                 }
             });
         });
@@ -51,7 +54,7 @@ function doTimer(timeEl: HTMLParagraphElement)
     let count = 30; 
 
     intervalId = window.setInterval(() => {
-        timeEl.textContent = 'Timer: ' + count;
+        timeEl.textContent = 'Timer: ' + count + ' sec';
 
         if (count <= 0) 
         {
@@ -132,9 +135,8 @@ class GemLogic
         {
             const imgSRc = image.src;
             this.inGameImageList.push(imgSRc.toString());
-            this.inGameImageList.forEach(i => console.log('content of the list: ' + i));
             console.log(this.inGameImageList.length);
-            this.compareTwoElemtOfList(this.inGameImageList, buttom, allButtonEl);
+            this.compareTwoElemtOfList(this.inGameImageList);
         }
         else
         {
@@ -142,9 +144,8 @@ class GemLogic
         }
     }
 
-    private compareTwoElemtOfList(inGameImageList: string[], buttom: HTMLButtonElement, allButtonEl: HTMLButtonElement[])
+    private compareTwoElemtOfList(inGameImageList: string[])
     {
-
         let setTimeOutAnonimConsoleClear: () => void = function() {
             setTimeout(() => {
                 console.clear();
@@ -191,8 +192,6 @@ class GemLogic
         }
         buttom.disabled = true;
         setTimeout(() => {buttom.style.backgroundColor = 'rgb(000, 000, 000)'}, 500);
-
-        
     }
 
     public forceTheMemorize(buttom: HTMLButtonElement)

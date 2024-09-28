@@ -25,12 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 gemLogic.getButtomImage(buttom, allButtonEl);
                 gemLogic.makeTheButtomStyelOriginal(buttom);
                 if (finalCount === 16) {
-                    stopTimer();
                     start_buttonEl.disabled = false;
                     start_buttonEl.textContent = 'Restart';
+                    stopTimer();
                     start_buttonEl.addEventListener('click', () => {
                         location.reload();
                     });
+                }
+                else {
+                    console.log(finalCount + ' finalCount');
                 }
             });
         });
@@ -40,7 +43,7 @@ let intervalId = null;
 function doTimer(timeEl) {
     let count = 30;
     intervalId = window.setInterval(() => {
-        timeEl.textContent = 'Timer: ' + count;
+        timeEl.textContent = 'Timer: ' + count + ' sec';
         if (count <= 0) {
             clearInterval(intervalId);
             timeEl.textContent = 'Time\'s up!';
@@ -90,15 +93,14 @@ class GemLogic {
         if (image && image.src) {
             const imgSRc = image.src;
             this.inGameImageList.push(imgSRc.toString());
-            this.inGameImageList.forEach(i => console.log('content of the list: ' + i));
             console.log(this.inGameImageList.length);
-            this.compareTwoElemtOfList(this.inGameImageList, buttom, allButtonEl);
+            this.compareTwoElemtOfList(this.inGameImageList);
         }
         else {
             console.log('No image found');
         }
     }
-    compareTwoElemtOfList(inGameImageList, buttom, allButtonEl) {
+    compareTwoElemtOfList(inGameImageList) {
         let setTimeOutAnonimConsoleClear = function () {
             setTimeout(() => {
                 console.clear();
