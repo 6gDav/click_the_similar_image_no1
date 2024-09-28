@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let gemLogic: GemLogic;
 
     start_buttonEl.addEventListener('click', () => {
+        timeEl.textContent = 'Wait'
         setTimeout(() => {doTimer(timeEl)}, 8_000);
         start_buttonEl.disabled = true;
         console.log('Clicked Stat');
